@@ -1,4 +1,4 @@
-source config.properties
+source scripts/config.properties
 
 # Define where to store the generated certs and metadata.
 DIR="$(pwd)/tls"

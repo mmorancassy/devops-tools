@@ -119,12 +119,12 @@ mkdir -p /var/devtools/data/sonar/postgresql/data
 
 echo "[Creating self signed certificates - Step 1]${green}############################ Creating self signed certificates...${reset}"
 
-sh ../scripts/create-certs.sh
+sh scripts/create-certs.sh
 
 echo "[Creating self signed certificates - Step 2]${green}############################ Copying self signed certificates...${reset}"
 
-cp tls/selfsigned.crt ../reverseproxy/nginx/certs/
-cp tls/selfsigned.crt ../reverseproxy/nginx/certs/ 
-
+mkdir -p reverse-proxy/nginx/certs
+cp tls/selfsigned.crt reverse-proxy/nginx/certs/
+cp tls/selfsigned.crt reverse-proxy/nginx/certs/ 
 
 exit 0
