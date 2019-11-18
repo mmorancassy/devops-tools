@@ -125,6 +125,6 @@ echo "[Creating self signed certificates - Step 2]${green}######################
 
 mkdir -p reverse-proxy/nginx/certs
 cp tls/selfsigned.crt reverse-proxy/nginx/certs/
-cp tls/selfsigned.crt reverse-proxy/nginx/certs/ 
+cp tls/selfsigned.key reverse-proxy/nginx/certs/ 
 
 exit 0

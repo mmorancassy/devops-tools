@@ -6,7 +6,7 @@ services:
     container_name: jenkinscicd
     environment:
       - RESTORE_DEFAULTS=false
-      - RESTORE_MAVEN_SETTINGS=true
+      - RESTORE_MAVEN_SETTINGS=false
     volumes:
       - ${JENKINS_DATA}:/var/jenkins_home:rw
       - ${PLATFORM_CONFIG}:/tmp/op:rw  

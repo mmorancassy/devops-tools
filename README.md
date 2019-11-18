@@ -25,3 +25,10 @@ git clone https://github.com/mmorancassy/devops-tools.git
 ```shell
 docker-compose -f docker-compose.fullcicd.yml up -d
 ```
+
+- Finally you can access every tool:
+
+https://<host_ip>/portainer
+https://<host_ip>/jenkins
+https://<host_ip>/sonar
+https://<host_ip>/
