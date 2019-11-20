@@ -8,7 +8,7 @@
 chmod 755 centos7-base-software.sh
 ```
 
-- Copy **config.properties** file to the same directory that script is located and edit with the vm ip address
+- Copy **config.properties** file to the same directory that previous script is located and edit with the vm ip address
 
 ```shell
 COMMONNAME=127.0.0.1
@@ -16,7 +16,7 @@ IP=127.0.0.1
 DNS=127.0.0.1
 ```
 
-- Execute the script (this script install git, docker, docker-compose and generates self signed certificates)
+- Execute the script (this script installs git, docker, docker-compose and generates self signed certificates)
 
 ```shell
 ./centos7-base-software.sh
