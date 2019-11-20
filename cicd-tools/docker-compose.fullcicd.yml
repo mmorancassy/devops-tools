@@ -38,20 +38,18 @@ services:
       - ${SONAR_DATA}:/opt/sonarqube/data
       - ${SONAR_EXT}:/opt/sonarqube/extensions
       - ${SONAR_PLUGINS}:/opt/sonarqube/lib/bundled-plugins
+    depends_on:
+      - "db"      
     restart: on-failure   
   db:
     image: postgres:${POSTGRESQL_VERSION}
     container_name: db
-    networks:
-      - sonarnet    
-    networks:
-      - sonarnet
     environment:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
     volumes:
       - ${SONAR_POSTGRESQL}:/var/lib/postgresql
-      - ${SONAR_POSTGRESQL_DATA}:/var/lib/postgresql/data  
+      - ${SONAR_POSTGRESQL_DATA}:/var/lib/postgresql/data       
     restart: on-failure 
   reverseproxy:
     image: nginx:${NGINX_VERSION}
@@ -66,15 +64,7 @@ services:
     image: portainer/portainer
     command: -H unix:///var/run/docker.sock
     restart: always
-    ports:
-      - "9000:9000"
-      - "8000:8000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    restart: on-failure      
-volumes:
-  portainer_data:  
-networks:
-  sonarnet:
-    driver: bridge    
+      - ${PORTAINER_DATA}:/data
+    restart: on-failure

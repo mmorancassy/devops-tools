@@ -116,6 +116,7 @@ mkdir -p /var/devtools/data/sonar/sqext
 mkdir -p /var/devtools/data/sonar/sqplugins
 mkdir -p /var/devtools/data/sonar/postgresql
 mkdir -p /var/devtools/data/sonar/postgresql/data 
+mkdir -p /var/devtools/data/portainer
 
 chown -R 200 /var/devtools/data/nexusdata
 
