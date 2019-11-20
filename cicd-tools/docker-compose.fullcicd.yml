@@ -25,11 +25,14 @@ services:
   nexus:
     image: sonatype/nexus3:${NEXUS_VERSION}
     container_name: nexus
+    environment:
+      - NEXUS_CONTEXT=nexus
     volumes:
       - ${NEXUS_DATA}:/nexus-data     
     restart: on-failure            
   sonarqube:
     image: sonarqube:${SONAR_VERSION}
+    command: -Dsonar.web.context=/sonar
     container_name: sonarqube
     environment:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
