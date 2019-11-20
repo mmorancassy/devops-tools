@@ -15,7 +15,7 @@
 #
 # ------------------------------------------------------------------------
 
-source scripts/config.properties
+source config.properties
 
 # Defining standard output colors
 red=`tput setaf 1`
