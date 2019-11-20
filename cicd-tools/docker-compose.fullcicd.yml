@@ -74,4 +74,7 @@ services:
       - portainer_data:/data
     restart: on-failure      
 volumes:
-  portainer_data:    
+  portainer_data:  
+networks:
+  sonarnet:
+    driver: bridge    
