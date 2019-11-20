@@ -22,6 +22,12 @@ services:
       - ${GITLAB_DATA}:/var/opt/gitlab
       - ${GITLAB_CERTS}:/etc/gitlab/ssl      
     restart: on-failure    
+  nexus:
+    image: sonatype/nexus3:${NEXUS_VERSION}
+    container_name: nexus
+    volumes:
+      - ${NEXUS_DATA}:/nexus-data     
+    restart: on-failure            
   sonarqube:
     image: sonarqube:${SONAR_VERSION}
     container_name: sonarqube
@@ -36,6 +42,8 @@ services:
   db:
     image: postgres:${POSTGRESQL_VERSION}
     container_name: db
+    networks:
+      - sonarnet    
     networks:
       - sonarnet
     environment:

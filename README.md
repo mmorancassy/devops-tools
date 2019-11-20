@@ -1,6 +1,6 @@
 # How to deploy ci/cd DevOps tools
 	
-- Provisioning with Terraform TODO
+- Provisioning Digital Ocean Droplet with Terraform (CentOS>=7 based) TODO
 - Install git client:
 
 ```shell
@@ -20,7 +20,7 @@ git clone https://github.com/mmorancassy/devops-tools.git
 ./centos7-base-software.sh
 ```
 
-- Deploying ci-cd tools (Jenkins, GitLab, SonarQube, Portainer) typing:
+- Deploying ci-cd tools (Jenkins, GitLab, SonarQube, Nexus, Portainer) typing:
 
 ```shell
 docker-compose -f docker-compose.fullcicd.yml up -d
@@ -33,5 +33,7 @@ docker-compose -f docker-compose.fullcicd.yml up -d
 [https://<host_ip>/jenkins](https://<host_ip>/jenkins "https://<host_ip>/jenkins")
 
 [https://<host_ip>/sonar](https://<host_ip>/sonar "https://<host_ip>/sonar")
+
+[https://<host_ip>/nexus](https://<host_ip>/nexus "https://<host_ip>/nexus")
 
 [https://<host_ip>](https://<host_ip> "https://<host_ip>")

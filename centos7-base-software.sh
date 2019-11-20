@@ -107,6 +107,7 @@ mkdir -p /var/devtools/data/gitlabdata/config
 mkdir -p /var/devtools/data/gitlabdata/logs
 mkdir -p /var/devtools/data/gitlabdata/data
 mkdir -p /var/devtools/data/gitlabdata/certs
+mkdir -p /var/devtools/data/nexusdata
 mkdir -p /var/devtools/data/sonar/sqconf
 mkdir -p /var/devtools/data/sonar/sqdata
 mkdir -p /var/devtools/data/sonar/sqext
