@@ -28,6 +28,12 @@ DNS=127.0.0.1
 git clone https://github.com/mmorancassy/devops-tools.git
 ```
 
+- Copy self signed certificates located at **/tmp/tls** folder to **devops-tools/reverseproxy/nginx**
+
+```shell
+mv /tmp/tls devops-tools/reverseproxy/nginx/certs
+```
+
 - Deploying ci-cd tools (Jenkins, GitLab, SonarQube, Nexus, Portainer) typing:
 
 ```shell
@@ -48,7 +54,7 @@ GitLab: [https://<host_ip>](https://<host_ip> "https://<host_ip>")
 
 # Custom configuration
 
-- If you want to store your persistent data in other location yo have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your 
+- If you want to store your persistent data in other location you have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your 
 
 ```shell
 # Jenkins configuration

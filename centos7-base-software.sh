@@ -224,8 +224,6 @@ openssl x509 -in "${DIR}/selfsigned.crt" -noout -text
 
 echo "[Creating self signed certificates - Step 2]${green}############################ Copying self signed certificates...${reset}"
 
-mkdir -p reverse-proxy/nginx/certs
-cp tls/selfsigned.crt reverse-proxy/nginx/certs/
-cp tls/selfsigned.key reverse-proxy/nginx/certs/ 
-
+mv tls /tmp/tls
+ 
 exit 0
