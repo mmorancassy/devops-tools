@@ -57,41 +57,8 @@ GitLab: [https://<host_ip>](https://<host_ip> "https://<host_ip>")
 - If you want to store your persistent data in other location you have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your needs, and **config.properties** and edit **DATA_PATH** variable
 
 ```shell
-# Jenkins configuration
-JENKINS_DATA=/var/devtools/data/jenkinsdata
-PLATFORM_CONFIG=/var/devtools/data/platform_config
-DOCKER_DATA=/var/run/docker.sock
-JENKINS_VERSION=latest
-
-# GitLab configuration
-GITLAB_CONFIG=/var/devtools/data/gitlabdata/config
-GITLAB_LOGS=/var/devtools/data/gitlabdata/logs
-GITLAB_DATA=/var/devtools/data/gitlabdata/data
-GITLAB_CERTS=/var/devtools/data/gitlabdata/certs
-GITLAB_VERSION=9.3.8-ce.0
-
-# Nexus configuration
-NEXUS_DATA=/var/devtools/data/nexusdata
-NEXUS_VERSION=latest
-
-# SonarQube configuration
-SONAR_CONF=/var/devtools/data/sonar/sqconf
-SONAR_DATA=/var/devtools/data/sonar/sqdata
-SONAR_EXT=/var/devtools/data/sonar/sqext
-SONAR_PLUGINS=/var/devtools/data/sonar/sqplugins
-SONAR_POSTGRESQL=/var/devtools/data/sonar/postgresql
-SONAR_POSTGRESQL_DATA=/var/devtools/data/sonar/postgresql/data  
-SONAR_VERSION=7.0
-
-POSTGRESQL_VERSION=10.3
-
-# Portainer configuration
-PORTAINER_DATA=/var/devtools/data/portainer
-
-# Nginx config
-NGINX_CONF=../reverse-proxy/nginx/nginx.conf
-NGINX_CERTS=../reverse-proxy/nginx/certs
-NGINX_VERSION=latest
+# Persistent data
+DATA_PATH=/var
 ```
 
 ```shell

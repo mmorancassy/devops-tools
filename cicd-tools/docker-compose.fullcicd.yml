@@ -8,8 +8,8 @@ services:
       - RESTORE_DEFAULTS=false
       - RESTORE_MAVEN_SETTINGS=false
     volumes:
-      - ${JENKINS_DATA}:/var/jenkins_home:rw
-      - ${PLATFORM_CONFIG}:/tmp/op:rw  
+      - ${DATA_PATH}${JENKINS_DATA}:/var/jenkins_home:rw
+      - ${DATA_PATH}${PLATFORM_CONFIG}:/tmp/op:rw  
       - ${DOCKER_DATA}:/var/run/docker.sock
     restart: on-failure     
   gitlab:
@@ -17,10 +17,10 @@ services:
     container_name: gitlab
     hostname: 'localhost'
     volumes:
-      - ${GITLAB_CONFIG}:/etc/gitlab
-      - ${GITLAB_LOGS}:/var/log/gitlab
-      - ${GITLAB_DATA}:/var/opt/gitlab
-      - ${GITLAB_CERTS}:/etc/gitlab/ssl      
+      - ${DATA_PATH}${GITLAB_CONFIG}:/etc/gitlab
+      - ${DATA_PATH}${GITLAB_LOGS}:/var/log/gitlab
+      - ${DATA_PATH}${GITLAB_DATA}:/var/opt/gitlab
+      - ${DATA_PATH}${GITLAB_CERTS}:/etc/gitlab/ssl      
     restart: on-failure    
   nexus:
     image: sonatype/nexus3:${NEXUS_VERSION}
@@ -28,7 +28,7 @@ services:
     environment:
       - NEXUS_CONTEXT=nexus
     volumes:
-      - ${NEXUS_DATA}:/nexus-data     
+      - ${DATA_PATH}${NEXUS_DATA}:/nexus-data     
     restart: on-failure            
   sonarqube:
     image: sonarqube:${SONAR_VERSION}
@@ -37,10 +37,10 @@ services:
     environment:
       - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
     volumes:
-      - ${SONAR_CONF}:/opt/sonarqube/conf
-      - ${SONAR_DATA}:/opt/sonarqube/data
-      - ${SONAR_EXT}:/opt/sonarqube/extensions
-      - ${SONAR_PLUGINS}:/opt/sonarqube/lib/bundled-plugins
+      - ${DATA_PATH}${SONAR_CONF}:/opt/sonarqube/conf
+      - ${DATA_PATH}${SONAR_DATA}:/opt/sonarqube/data
+      - ${DATA_PATH}${SONAR_EXT}:/opt/sonarqube/extensions
+      - ${DATA_PATH}${SONAR_PLUGINS}:/opt/sonarqube/lib/bundled-plugins
     depends_on:
       - "db"      
     restart: on-failure   
@@ -51,8 +51,8 @@ services:
       - POSTGRES_USER=sonar
       - POSTGRES_PASSWORD=sonar
     volumes:
-      - ${SONAR_POSTGRESQL}:/var/lib/postgresql
-      - ${SONAR_POSTGRESQL_DATA}:/var/lib/postgresql/data       
+      - ${DATA_PATH}${SONAR_POSTGRESQL}:/var/lib/postgresql
+      - ${DATA_PATH}${SONAR_POSTGRESQL_DATA}:/var/lib/postgresql/data       
     restart: on-failure 
   reverseproxy:
     image: nginx:${NGINX_VERSION}
@@ -69,5 +69,5 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${PORTAINER_DATA}:/data
+      - ${DATA_PATH}${PORTAINER_DATA}:/data
     restart: on-failure
