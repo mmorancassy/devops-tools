@@ -31,7 +31,7 @@ git clone https://github.com/mmorancassy/devops-tools.git
 - Copy self signed certificates located at **/tmp/tls** folder to **devops-tools/reverseproxy/nginx**
 
 ```shell
-mv /tmp/tls devops-tools/reverseproxy/nginx/certs
+mv /tmp/tls devops-tools/reverse-proxy/nginx/certs
 ```
 
 - Deploying ci-cd tools (Jenkins, GitLab, SonarQube, Nexus, Portainer) typing:
