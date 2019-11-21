@@ -54,7 +54,7 @@ GitLab: [https://<host_ip>](https://<host_ip> "https://<host_ip>")
 
 # Custom configuration
 
-- If you want to store your persistent data in other location you have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your 
+- If you want to store your persistent data in other location you have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your needs, and **config.properties** and edit **DATA_PATH** variable
 
 ```shell
 # Jenkins configuration
@@ -93,3 +93,8 @@ NGINX_CONF=../reverse-proxy/nginx/nginx.conf
 NGINX_CERTS=../reverse-proxy/nginx/certs
 NGINX_VERSION=latest
 ```
+
+```shell
+# Persistent data
+DATA_PATH=/var
+``

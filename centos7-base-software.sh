@@ -103,22 +103,22 @@ fi
 
 echo "[Creating folders - Step 1]${green}############################ Creating ci-cd persistent directories...${reset}"
 
-mkdir -p /var/devtools/data/jenkinsdata
-mkdir -p /var/devtools/data/platform_config
-mkdir -p /var/devtools/data/gitlabdata/config
-mkdir -p /var/devtools/data/gitlabdata/logs
-mkdir -p /var/devtools/data/gitlabdata/data
-mkdir -p /var/devtools/data/gitlabdata/certs
-mkdir -p /var/devtools/data/nexusdata
-mkdir -p /var/devtools/data/sonar/sqconf
-mkdir -p /var/devtools/data/sonar/sqdata
-mkdir -p /var/devtools/data/sonar/sqext
-mkdir -p /var/devtools/data/sonar/sqplugins
-mkdir -p /var/devtools/data/sonar/postgresql
-mkdir -p /var/devtools/data/sonar/postgresql/data 
-mkdir -p /var/devtools/data/portainer
+mkdir -p $DATA_PATH/devtools/data/jenkinsdata
+mkdir -p $DATA_PATH/devtools/data/platform_config
+mkdir -p $DATA_PATH/devtools/data/gitlabdata/config
+mkdir -p $DATA_PATH/devtools/data/gitlabdata/logs
+mkdir -p $DATA_PATH/devtools/data/gitlabdata/data
+mkdir -p $DATA_PATH/devtools/data/gitlabdata/certs
+mkdir -p $DATA_PATH/devtools/data/nexusdata
+mkdir -p $DATA_PATH/devtools/data/sonar/sqconf
+mkdir -p $DATA_PATH/devtools/data/sonar/sqdata
+mkdir -p $DATA_PATH/devtools/data/sonar/sqext
+mkdir -p $DATA_PATH/devtools/data/sonar/sqplugins
+mkdir -p $DATA_PATH/devtools/data/sonar/postgresql
+mkdir -p $DATA_PATH/devtools/data/sonar/postgresql/data 
+mkdir -p $DATA_PATH/devtools/data/portainer
 
-chown -R 200 /var/devtools/data/nexusdata
+chown -R 200 $DATA_PATH/devtools/data/nexusdata
 
 ##########################################################
 ### Generate self signed certs
