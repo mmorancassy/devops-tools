@@ -8,9 +8,11 @@
 chmod 755 centos7-base-software.sh
 ```
 
-- Copy **config.properties** file to the same directory that previous script is located and edit with the vm ip address
+- Copy **config.properties** file to the same directory that previous script is located and edit with the vm ip address, and the directory in your filesystem where you want to store your persistent container data.
 
 ```shell
+DATA_PATH=/var
+
 COMMONNAME=127.0.0.1
 IP=127.0.0.1
 DNS=127.0.0.1
@@ -34,7 +36,7 @@ git clone https://github.com/mmorancassy/devops-tools.git
 mv /tmp/tls devops-tools/reverse-proxy/nginx/certs
 ```
 
-- Deploying ci-cd tools (Jenkins, GitLab, SonarQube, Nexus, Portainer) typing:
+- Deploy ci-cd tools (Jenkins, GitLab, SonarQube, Nexus, Portainer) first navigate to folder **devops-tools/cicd-tools** and type:
 
 ```shell
 docker-compose -f docker-compose.fullcicd.yml up -d
