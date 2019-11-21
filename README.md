@@ -97,4 +97,4 @@ NGINX_VERSION=latest
 ```shell
 # Persistent data
 DATA_PATH=/var
-``
+```
