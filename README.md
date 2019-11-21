@@ -30,7 +30,7 @@ DNS=127.0.0.1
 git clone https://github.com/mmorancassy/devops-tools.git
 ```
 
-- Copy self signed certificates located at **/tmp/tls** folder to **devops-tools/reverseproxy/nginx**
+- Copy self signed certificates located at **/tmp/tls** folder to **devops-tools/reverse-proxy/nginx**
 
 ```shell
 mv /tmp/tls devops-tools/reverse-proxy/nginx/certs
