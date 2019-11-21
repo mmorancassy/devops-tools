@@ -56,12 +56,7 @@ GitLab: [https://<host_ip>](https://<host_ip> "https://<host_ip>")
 
 # Custom configuration
 
-- If you want to store your persistent data in other location you have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your needs, and **config.properties** and edit **DATA_PATH** variable
-
-```shell
-# Persistent data
-DATA_PATH=/var
-```
+- If you want to store your persistent data in other location you have to edit file **.env** located in folder **devops-tools/cicd-tools** and change every location as your needs, and **config.properties** and edit **DATA_PATH** variable (Both files has the same environment variable)
 
 ```shell
 # Persistent data
