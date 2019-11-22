@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source config.properties
+
 fingerprint=$(ssh-keygen -E md5 -lf ~/.ssh/id_rsa.pub | awk '{print $2}')
 
 # VM creation:
