@@ -4,7 +4,7 @@
 
 ```shell
 # Digital Ocean access token
-DO_PATH=
+DO_PATH=794ae291b1e7277988196337a35a8d683748347381e52f7f8a0339d62e3150623
 ```
 
 ### You can create Digital Ocean Droplet with 'create' argument
