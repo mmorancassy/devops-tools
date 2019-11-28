@@ -1,0 +1,45 @@
+FROM jenkinsci/jenkins:latest
+
+# Metadata
+LABEL module.maintainer="nobody@nobody.org" \
+	  module.name="jenkins" \
+	  module.proposal="ci/cd"
+	  
+ENV PLUGINS_FORCE_UPGRADE=true \
+    JENKINS_OPTS="--prefix=/jenkins" \
+    RESTORE_DEFAULTS=false \
+    RESTORE_MAVEN_SETTINGS=false
+ 
+USER root
+
+RUN apt-get update -qq \
+    && apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common 
+    
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+
+RUN add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable"
+   
+# Install Docker engine and Maven   
+RUN apt-get update  -qq \
+    && apt-get install docker-ce=17.12.1~ce-0~debian -y \
+    && apt-get update -y && apt-get install maven -y
+
+# Customized plugins
+COPY jenkins-plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt    
+
+RUN usermod -aG docker jenkins && \
+    mkdir -p /tmp/op
+
+# Disable ssl verify
+RUN git config --global http.sslVerify false
+
+EXPOSE 8080
+
+VOLUME ["/tmp","/var/jenkins_home"]
+
+COPY jenkins.sh /usr/local/bin/
+ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
