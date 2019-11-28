@@ -1,6 +1,6 @@
 # How to deploy ci/cd DevOps tools
 	
-- Provisioning Digital Ocean Droplet with Terraform (CentOS>=7 based) TODO
+- Provisioning Digital Ocean Droplet with Terraform (CentOS>=7 based) go to **iaas-provisioning** inside this repo and follow instructions
 - Access provisioned virtual machine via ssh
 - Copy sh script **centos7-base-software.sh** and give it execution permissions
 
