@@ -2,7 +2,7 @@ version: "2.1"
 
 services:
   jenkinscicd:
-    image: onesaitplatform/jenkins:${JENKINS_VERSION}
+    image: docker.pkg.github.com/mmorancassy/devops-tools/jenkins:${JENKINS_VERSION}
     container_name: jenkinscicd
     environment:
       - RESTORE_DEFAULTS=false
