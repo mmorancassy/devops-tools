@@ -1,0 +1,26 @@
+---
+
+# common vars
+
+external_volume: /var
+
+# rancher agent node vars
+
+self_signed_certs_key: "{{ external_volume }}/devops-tools/reverse-proxy/nginx/certs/server.key"
+self_signed_certs_cert: "{{ external_volume }}/devops-tools/reverse-proxy/nginx/certs/server.csr"
+self_signed_ca_key: "{{ external_volume }}/devops-tools/reverse-proxy/nginx/certs/selfsigned.key"
+self_signed_ca_cert: "{{ external_volume }}/devops-tools/reverse-proxy/nginx/certs/ca.crt"
+self_signed_cert_with_ca: "{{ external_volume }}/devops-tools/reverse-proxy/nginx/certs/certs/selfsigned.crt"
+
+# docker external store
+
+docker_data_store: "{{ external_volume }}/docker"
+
+# self signed certs
+
+fqdn_server_name: 165.22.58.69
+
+# trust between local and remote host
+
+local_home: /root
+remote_home: /root

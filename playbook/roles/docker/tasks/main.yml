@@ -1,0 +1,86 @@
+---
+
+# Install Docker CE with yum
+
+- name: Install yum-utils
+  command: yum -y install yum-utils 
+  
+- name: Install device-mapper-persistent-data
+  command: yum -y device-mapper-persistent-data 
+  
+- name: Install lvm2
+  command: yum -y install lvm2     
+
+- name: Add Docker repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docer-ce.repo
+  become: yes
+  
+- name: Install Docker
+  package:
+    name: docker-ce
+    state: latest
+  become: yes
+  
+- name: Install Docker cli
+  package:
+    name: docker-ce-cli
+    state: latest
+  become: yes
+  
+- name: Install container.d
+  package:
+    name: containerd.io
+    state: latest
+  become: yes         
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: yes  
+
+# Docker configuration
+
+- name: Create docker directory
+  file: path="/etc/docker" state=directory
+      
+- name: Add custom Docker config
+  template: src=daemon.json dest=/etc/docker/daemon.json mode=0644
+
+- name: Change docker store path
+  template: src=docker.service dest=/lib/systemd/system/docker.service mode=0644
+  
+- name: Docker daemon reload to apply changes
+  systemd: 
+    state: restarted
+    daemon_reload: yes
+    name: docker
+    
+- name: Enable service docker and ensure it is not masked
+  systemd:
+    name: docker
+    enabled: yes
+    masked: no    
+
+# Install docker-compose
+
+- name: Download docker-compose 1.25.3 from GitHub
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.25.3/docker-compose-Linux-x86_64
+    dest: /bin
+    validate_certs: False      
+
+- name: Wait until the file /bin/docker-compose-Linux-x86_64 is present before continuing
+  wait_for:
+    path: /bin/docker-compose-Linux-x86_64
+    
+- name: Rename docker-compose binary
+  command: mv /bin/docker-compose-Linux-x86_64 /bin/docker-compose
+
+- name: Set docker-compose permissions
+  file:
+    path: /bin/docker-compose
+    mode: 0755

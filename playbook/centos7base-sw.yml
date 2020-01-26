@@ -1,0 +1,54 @@
+---
+# Install base software on CentOS 7 distr
+
+- name: Establish trust between hosts
+  hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_become_pass: secret
+  roles:
+    - trust
+  tags:
+    - trust     
+    
+- name: Install base software and generate self signed certs
+  hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_become_pass: secret
+    offline: false
+  roles:
+    - basesw
+  tags:
+    - basesw     
+    
+- name: Install Docker Engine and Docker tools
+  hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_become_pass: secret
+    offline: false
+    rhel7: false
+  roles:
+    - docker 
+  tags:
+    - docker      
+    
+- name: Install DevOps tools
+  hosts: all
+  remote_user: root
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_become_pass: secret
+    offline: false
+  roles:
+    - tools
+  tags:
+    - tools 

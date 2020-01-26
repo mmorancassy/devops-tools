@@ -1,0 +1,84 @@
+---
+
+# Install base software, create directories and generate self signed certs
+
+- name: Install git
+  command: yum -y install git      
+  
+- name: Create jenkinsdata directory
+  file: path="{{ external_volume }}/devtools/data/jenkinsdata" state=directory
+  
+- name: Create platform_config directory
+  file: path="{{ external_volume }}/devtools/data/platform_config" state=directory
+  
+- name: Create gitlabdata config directory
+  file: path="{{ external_volume }}/devtools/data/gitlabdata/config" state=directory
+
+- name: Create gitlabdata logs directory
+  file: path="{{ external_volume }}/devtools/data/gitlabdata/logs" state=directory
+  
+- name: Create gitlabdata data directory
+  file: path="{{ external_volume }}/devtools/data/gitlabdata/data" state=directory
+  
+- name: Create gitlabdata certs directory
+  file: path="{{ external_volume }}/devtools/data/gitlabdata/certs" state=directory
+  
+- name: Create nexusdata directory
+  file: path="{{ external_volume }}/devtools/data/nexusdata" state=directory mode=200
+
+- name: Create sonar config directory
+  file: path="{{ external_volume }}/devtools/data/sonar/sqconf" state=directory 
+
+- name: Create sonar data directory
+  file: path="{{ external_volume }}/devtools/data/sonar/sqdata" state=directory
+  
+- name: Create sonar sqext directory
+  file: path="{{ external_volume }}/devtools/data/sonar/sqext" state=directory
+  
+- name: Create sonar plugins directory
+  file: path="{{ external_volume }}/devtools/data/sonar/sqplugins" state=directory
+
+- name: Create sonar config database directory
+  file: path="{{ external_volume }}/devtools/data/sonar/postgresql" state=directory   
+  
+- name: Create sonar data directory
+  file: path="{{ external_volume }}/devtools/data/sonar/postgresql/data " state=directory
+
+- name: Create portainer directory
+  file: path="{{ external_volume }}/devtools/data/portainer " state=directory              
+  
+- name: OpenSSL configuration file
+  template: src=openssl.cnf dest={{ external_volume }}/devops-tools/reverse-proxy/nginx/openssl.cnf mode=744  
+
+- name: CA create
+  shell: openssl req \
+         -nodes \
+         -x509 \
+         -newkey rsa:2048 \
+         -days 365 \
+         -subj '/C=ES/ST=Madrid/L=Unit/O=Company' \
+         -keyout "{{ self_signed_ca_key }}" \
+         -out "{{ self_signed_ca_cert }}"
+
+- name: Cert and key create (Step 1)
+  shell: openssl genrsa \
+         -out "{{ self_signed_certs_key }}" 2048
+
+- name: Cert and key create (Step 2)
+  shell: openssl req \
+         -new \
+         -config "{{ external_volume }}/devops-tools/reverse-proxy/nginx/openssl.cnf" \
+         -key "{{ self_signed_certs_key }}" \
+         -out "{{ self_signed_certs_cert }}"
+
+- name: Sign server cert with CA
+  shell: openssl x509 \
+         -CA "{{ self_signed_ca_cert }}" \
+         -CAkey "{{ self_signed_ca_key }}" \
+         -req \
+         -in "{{ self_signed_certs_cert }}" \
+         -days 365 \
+         -CAcreateserial \
+         -extensions v3_req \
+         -extfile "{{ external_volume }}/devops-tools/reverse-proxy/nginx/certs/openssl.cnf" \
+         -out "{{ self_signed_cert_with_ca }}"

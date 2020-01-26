@@ -1,0 +1,22 @@
+---
+
+# Generate an OpenSSH keypair with default values
+
+- name: Create ssh directory on local host
+  file: path="{{ local_home }}/.ssh" state=directory
+  delegate_to: 127.0.0.1
+  
+- name: Generate SSH keys locally
+  shell: ssh-keygen -b 4096 -t rsa -f {{ local_home }}/.ssh/id_rsa -q -N ""
+  args:
+    creates: "{{ local_home }}/.ssh/id_rsa"  
+  delegate_to: 127.0.0.1
+
+- name: Create ssh directory on remote host
+  file: path="{{ remote_home }}/.ssh" state=directory
+    
+- name: Copy public key to remote hosts and append it to authorized_keys file
+  copy: src={{ local_home }}/.ssh/id_rsa.pub dest="{{ remote_home }}/.ssh/authorized_keys"   
+  
+- name: Give correct permissions
+  command: chmod 0644 {{ remote_home }}/.ssh/authorized_keys  
