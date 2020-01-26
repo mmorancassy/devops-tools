@@ -6,7 +6,7 @@
   command: yum -y install git      
   
 - name: Create jenkinsdata directory
-  file: path="{{ external_volume }}/devtools/data/jenkinsdata" state=directory
+  file: path="{{ external_volume }}/devtools/data/jenkinsdata" state=directory mode=777
   
 - name: Create platform_config directory
   file: path="{{ external_volume }}/devtools/data/platform_config" state=directory

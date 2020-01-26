@@ -16,6 +16,11 @@ self_signed_cert_with_ca: "{{ external_volume }}/devops-tools/reverse-proxy/ngin
 
 docker_data_store: "{{ external_volume }}/docker"
 
+# GitHub packages
+
+docker_user: mmorancassy
+docker_token: 6a4e777137ea0e17ab5bc6e9c5639475a773ffb6
+
 # self signed certs
 
 fqdn_server_name: 165.22.58.69

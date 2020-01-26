@@ -84,3 +84,7 @@
   file:
     path: /bin/docker-compose
     mode: 0755
+    
+- name: Docker login to GitHub packages
+  command: docker login -u {{ docker_user }} -p {{ docker_token }} docker.pkg.github.com
+    
