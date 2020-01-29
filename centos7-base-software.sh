@@ -84,11 +84,6 @@ else
 fi
 
 ##########################################################
-### Docker login to GitHub packages
-
-docker login -u $PACKAGES_USER -p $PACKAGES_TOKEN docker.pkg.github.com
-
-##########################################################
 ### Create folders
 
 echo "[Creating folders - Step 1]${green}############################ Creating ci-cd persistent directories...${reset}"
